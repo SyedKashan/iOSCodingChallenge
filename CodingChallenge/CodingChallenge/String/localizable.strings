@@ -1,0 +1,14 @@
+/* 
+  localizable.strings
+  CodingChallenge
+
+  Created by Syed Ali Kashan on 04/07/2022.
+  
+*/
+
+// App Name
+"app_name" = "Coding Challenge";
+
+// Generic Errors
+"no_internet" = "Please check your internet connection";
+"something_wrong" = "Something went wrong";
