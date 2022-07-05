@@ -1,5 +1,5 @@
 /* 
-  localizable.strings
+ Localizable.strings
   CodingChallenge
 
   Created by Syed Ali Kashan on 04/07/2022.
@@ -12,3 +12,11 @@
 // Generic Errors
 "no_internet" = "Please check your internet connection";
 "something_wrong" = "Something went wrong";
+"validation_error" = "Validation Error";
+"empty_string" = "Please enter something to search";
+"min_length" = "Text should be greater than 3 characters";
+
+// Alert styling
+
+"dismiss" = "Dismiss";
+

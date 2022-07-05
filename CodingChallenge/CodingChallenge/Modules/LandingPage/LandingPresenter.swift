@@ -8,15 +8,21 @@
 import Foundation
 
 protocol LandingPresenting: AnyObject {
-	
+	func update(with state: State)
 }
 
-class LandingPresenter: LandingPresenting {
-	
+extension LandingPresenter: LandingPresenting {}
+
+class LandingPresenter {
+
 	private let view: LandingViewControllerProtocol?
 	
 	init(view: LandingViewControllerProtocol) {
 		self.view = view
+	}
+	
+	func update(with state: State) {
+		view?.update(with: state)
 	}
 	
 }

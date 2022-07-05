@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LandingViewControllerProtocol: AnyObject {
-	
+	func update(with state: State)
 }
 
 extension LandingViewController: LandingViewControllerProtocol,
@@ -42,19 +42,20 @@ class LandingViewController: UIViewController {
 	// MARK: IBActions
 	
 	@IBAction func didTapSearchButton(_ sender: UIButton) {
+		interactor?.validate(with: searchTextfield.text)
 	}
 }
 
 // MARK: UI Setup
 extension LandingViewController {
 	
-	func setupNavigation() {
+	private func setupNavigation() {
 		
 		let imageView = UIImageView(image: UIImage(named: "icon_polestar_nav"))
 		self.navigationItem.titleView = imageView
 	}
 	
-	func setupUI() {
+	private func setupUI() {
 		
 		searchButton.layer.borderColor = UIColor.black.cgColor
 		searchButton.layer.borderWidth = 1
@@ -68,5 +69,34 @@ extension LandingViewController {
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		view.endEditing(true)
+	}
+}
+
+// MARK: update state of view
+extension LandingViewController {
+	
+	func update(with state: State) {
+		switch state {
+		case .valid:
+			break
+		case .error(let errorModel):
+			presentAlert(with: errorModel)
+		}
+	}
+	
+	private func presentAlert(with errorModel: ErrorModel) {
+		let alertViewController = UIAlertController(
+			title: errorModel.title,
+			message: errorModel.errorMessage,
+			preferredStyle: .alert
+		)
+		let dismissButton = UIAlertAction(
+			title: LocalizableConstants.dismiss.localized,
+			style: .default,
+			handler: nil)
+		alertViewController.addAction(dismissButton)
+		self.present(alertViewController,
+					 animated: true,
+					 completion: nil)
 	}
 }

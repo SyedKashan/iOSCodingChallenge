@@ -9,7 +9,7 @@ import Foundation
 
 struct NetworkConstants {
 	
-	static private let baseURL = "https://memorytrack.testcamp.uk/api"
+	static private let baseURL = ""
 
 	static func getBaseUrl() -> String {
 		return NetworkConstants.baseURL
