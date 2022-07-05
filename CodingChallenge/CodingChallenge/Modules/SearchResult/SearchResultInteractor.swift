@@ -49,9 +49,12 @@ final class SearchResultInteractor {
 		remoteDataStore.fetch(query: searchString) { [weak self] result in
 			switch result {
 			case .success(let books):
-				books.isEmpty
-					? self?.presenter?.updateNoData()
-					: self?.presenter?.update(with: books)
+				if books.isEmpty {
+					self?.presenter?.updateNoData()
+				} else {
+					self?.presenter?.update(with: books)
+//					self?.localDataStore.save(items: books)
+				}
 			case .failure:
 				self?.presenter?.updateNoData()
 			}

@@ -7,33 +7,41 @@
 
 import Foundation
 
-struct Book: Codable {
-	
-	var key: String?
-	var title: String?
-	var year: Int?
-	var authors: [String]?
+struct Book: Identifiable, Codable {
 	
 	enum CodingKeys: String, CodingKey {
-		case key = "key"
+		case id = "key"
 		case title = "title"
 		case year = "first_publish_year"
 		case authors = "author_name"
+		case cover = "cover_i"
+	}
+	var id: String
+	let title: String
+	let year: Int
+	let authors: [String]
+	let cover: Int?
+	
+	init(id: String,
+		 title: String,
+		 year: Int,
+		 cover: Int?,
+		 authors: [String]
+	) {
+		self.id = id
+		self.title = title
+		self.year = year
+		self.authors = authors
+		self.cover = cover
 	}
 	
-	init(from decoder: Decoder) throws {
-		do {
-			let values = try decoder.container(keyedBy: CodingKeys.self)
-			key = try values.decodeIfPresent(String.self, forKey: .key) ?? String()
-			title = try values.decodeIfPresent(String.self, forKey: .title) ?? String()
-			year = try values.decodeIfPresent(Int.self, forKey: .year) ?? Int()
-			authors = try values.decodeIfPresent([String].self, forKey: .authors) ?? [String]()
-		} catch let DecodingError.typeMismatch(type, context) {
-			print("Type '\(type)' mismatch:", context.debugDescription)
-			print("codingPath:", context.codingPath)
-		} catch {
-			print(error)
-			print(error.localizedDescription)
-		}
+	public init(from decoder: Decoder) throws {
+		let values = try decoder.container(keyedBy: CodingKeys.self)
+		id = try values.decode(at: .id)
+		title = try values.decode(at: .title)
+		year = try values.decode(at: .year)
+		authors = try values.decode(at: .authors)
+		cover = try? values.decodeIfPresent(at: .cover)
 	}
 }
+

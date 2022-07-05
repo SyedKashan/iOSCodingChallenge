@@ -36,11 +36,7 @@ extension BookTableViewCell {
 	
 	func configureCell(with model: Book) {
 		titleLabel.text = model.title
-		authorLabel.text = model.authors?.joined(separator: "\n")
-		guard let year = model.year else {
-			yearLabel.isHidden = true
-			return
-		}
-		yearLabel.text = "\(year)"
+		authorLabel.text = model.authors.joined(separator: "\n")
+		yearLabel.text = "\(model.year)"
 	}
 }

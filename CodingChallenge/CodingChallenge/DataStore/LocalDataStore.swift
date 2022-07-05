@@ -6,9 +6,48 @@
 //
 
 import Foundation
+import CoreData
 
 class LocalDataStore: DataStore {
-	func fetch(query: String, completion: @escaping (Result<[Book], Error>) -> Void) {
-		completion(.failure(AppError.dataMissing))
+	
+	private lazy var persistentContainer: NSPersistentContainer = {
+			NSPersistentContainer(name: "CodingChallenge")
+		}()
+	
+	func fetch(
+		query: String,
+		completion: @escaping (Result<[Book], Error>) -> Void
+	) {
+		let fetchRequest: NSFetchRequest<BookEntity>
+		fetchRequest = BookEntity.fetchRequest()
+
+		fetchRequest.predicate = NSPredicate(
+			format: "title LIKE %@", query
+		)
+
+		let context = persistentContainer.viewContext
+		
+		do {
+			let results = try context.fetch(fetchRequest)
+			if results.count > 0 {
+				let books = results.compactMap{ $0.apiModel() as? Book }
+				completion(.success(books))
+			} else {
+				completion(.failure(AppError.dataMissing))
+			}
+		} catch {
+			fatalError("fetch request for entity Book predicate failed")
+		}
+	}
+	
+	func save(
+		items: [Book]
+	) {
+//		DispatchQueue.global(qos: .background) {
+			let context = persistentContainer.viewContext
+			items
+				.compactMap { BookEntity.init(apiModel: $0, context: context)}
+				.forEach { context.insert($0) }
+//		}
 	}
 }

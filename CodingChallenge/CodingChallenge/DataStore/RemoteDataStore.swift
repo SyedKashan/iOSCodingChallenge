@@ -12,16 +12,14 @@ class RemoteDataStore: DataStore {
 		let apiRequest = ApiManager<[Book]>(successHandler: { bookData in
 			guard bookData.count > 0 else {
 				completion(.failure(AppError.dataMissing))
-//				self?.presenter?.update(with: .empty)
 				return
 			}
-			let books = bookData.count > 10 ? Array(bookData.prefix(11).self) : bookData
-//			self?.presenter?.update(with: .success(bookSlice))
+			let books = bookData.count > 10 ? Array(bookData.prefix(10).self) : bookData
 			completion(.success(books))
 		}, nullDataSuccessHandler: { (httpStatusCode: HttpStatusCode) in
-//			completion(.failure(Error.emptyData))
+			completion(.failure(AppError.dataMissing))
 		}, errorHandler: { (httpStatusCode, errorMessage) in
-//			completion(.failure(Error.emptyData))
+			completion(.failure(AppError.dataMissing))
 		})
 		apiRequest.makeNetworkCall(
 			for: .search(searchText: query),
