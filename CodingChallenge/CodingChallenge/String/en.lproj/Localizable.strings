@@ -20,3 +20,7 @@
 
 "dismiss" = "Dismiss";
 
+// Instance Errors
+"logic_error" = "Logic error";
+"book_cell_instantiate" = "BookTableViewCell not instantiated"
+

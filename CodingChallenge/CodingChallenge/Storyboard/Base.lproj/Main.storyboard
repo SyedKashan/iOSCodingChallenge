@@ -71,6 +71,39 @@
             </objects>
             <point key="canvasLocation" x="663.768115942029" y="91.741071428571431"/>
         </scene>
+        <!--Search Result View Controller-->
+        <scene sceneID="3rg-MJ-uua">
+            <objects>
+                <viewController storyboardIdentifier="SearchResultViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AmG-sq-BVH" customClass="SearchResultViewController" customModule="CodingChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0rb-fn-Pls">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="d7r-1C-bRB">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="AmG-sq-BVH" id="8xK-ti-Qqh"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kOo-Di-l4N"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d7r-1C-bRB" firstAttribute="leading" secondItem="kOo-Di-l4N" secondAttribute="leading" id="8fS-5z-RDR"/>
+                            <constraint firstItem="kOo-Di-l4N" firstAttribute="bottom" secondItem="d7r-1C-bRB" secondAttribute="bottom" id="eDj-X4-MJ8"/>
+                            <constraint firstItem="kOo-Di-l4N" firstAttribute="trailing" secondItem="d7r-1C-bRB" secondAttribute="trailing" id="oH2-ll-vHc"/>
+                            <constraint firstItem="d7r-1C-bRB" firstAttribute="top" secondItem="kOo-Di-l4N" secondAttribute="top" id="oaR-2W-OSK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="d7r-1C-bRB" id="bo2-Sd-eOr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="trw-80-onO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1390" y="92"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="yDZ-Pc-4sB">
             <objects>

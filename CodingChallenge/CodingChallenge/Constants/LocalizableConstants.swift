@@ -16,5 +16,7 @@ struct LocalizableConstants {
 	static let emptyString = "empty_string"
 	static let minLength = "min_length"
 	static let dismiss = "dismiss"
+	static let bookCellInstantiate = "book_cell_instantiate"
+	static let logicError = "logic_error"
 
 }

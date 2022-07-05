@@ -55,7 +55,7 @@ extension ApiManager {
 		guard let data = data else {
 			guard let handler = self.nullDataSuccessHandler else {
 				// MARK: Unknown Error Handler
-				self.showErrorIfAllowed(error: "something_wrong".localized)
+				self.showErrorIfAllowed(error: LocalizableConstants.somethingWrong.localized)
 				self.errorHandler(nil, nil)
 				return
 			}
@@ -147,13 +147,13 @@ extension ApiManager {
 						self.logoutUser()
 					case .serverError, .unknown:
 						// MARK: Unknown Error Handler
-						self.showErrorIfAllowed(error: "something_wrong".localized)
+						self.showErrorIfAllowed(error: LocalizableConstants.somethingWrong.localized)
 						self.errorHandler(nil, nil)
 					}
 				} catch let error {
 					// MARK: JSON Parsing Error
 					print(error.localizedDescription)
-					self.showErrorIfAllowed(error: "something_wrong".localized)
+					self.showErrorIfAllowed(error: LocalizableConstants.somethingWrong.localized)
 					self.errorHandler(nil, nil)
 				}
 			case .failure(let error):

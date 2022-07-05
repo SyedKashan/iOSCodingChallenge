@@ -9,8 +9,11 @@ import Foundation
 
 enum ApiEndPoints {
 	
+	case search(searchText: String)
+	
 	var methodName: String {
 		switch self {
+		case .search(let searchText): return "search.json?q=\(searchText)"
 		}
 	}
 }

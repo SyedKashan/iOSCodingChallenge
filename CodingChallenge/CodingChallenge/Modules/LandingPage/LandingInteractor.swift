@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol LandingInteractorProtocol: AnyObject {
+protocol LandingInteractorProtocol {
 	func validate(with searchText: String?)
 }
 
@@ -23,7 +23,7 @@ enum State {
 	case error(ErrorModel)
 }
 
-class LandingInteractor {
+final class LandingInteractor {
 	
 	private let presenter: LandingPresenting?
 	
@@ -46,7 +46,7 @@ class LandingInteractor {
 				errorMessage: LocalizableConstants.minLength.localized))
 			)
 		} else {
-			presenter?.update(with: .valid)
+			presenter?.routeToSearchResult(with: searchText)
 		}
 	}
 }

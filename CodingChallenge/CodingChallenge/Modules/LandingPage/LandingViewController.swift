@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol LandingViewControllerProtocol: AnyObject {
+protocol LandingViewControllerProtocol {
 	func update(with state: State)
 }
 
 extension LandingViewController: LandingViewControllerProtocol,
 								 UITextFieldDelegate {}
 
-class LandingViewController: UIViewController {
+final class LandingViewController: UIViewController {
 	
 	// MARK: - Properties -
 	// MARK: Outlets
@@ -35,7 +35,8 @@ class LandingViewController: UIViewController {
 		setupNavigation()
 		
 		interactor = LandingInteractor(
-			presenter: LandingPresenter(view: self)
+			presenter: LandingPresenter(view: self,
+										router: LandingRouter(view: self))
 		)
 	}
 	
@@ -77,8 +78,7 @@ extension LandingViewController {
 	
 	func update(with state: State) {
 		switch state {
-		case .valid:
-			break
+		case .valid: break
 		case .error(let errorModel):
 			presentAlert(with: errorModel)
 		}

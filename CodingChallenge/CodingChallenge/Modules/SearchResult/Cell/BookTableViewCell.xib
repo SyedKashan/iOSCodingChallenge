@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="152" id="KGk-i7-Jjw" customClass="BookTableViewCell" customModule="CodingChallenge" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="152"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="152"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTF-2a-2kw">
+                        <rect key="frame" x="10" y="10" width="300" height="132"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="N2F-iV-sZJ">
+                                <rect key="frame" x="10" y="10" width="280" height="112"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfq-90-Quz">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="37.5"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKH-Rb-ilw">
+                                        <rect key="frame" x="0.0" y="37.5" width="280" height="37"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tA2-Sv-Ju3">
+                                        <rect key="frame" x="0.0" y="74.5" width="280" height="37.5"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="uaf-mR-tra"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="N2F-iV-sZJ" firstAttribute="leading" secondItem="GTF-2a-2kw" secondAttribute="leading" constant="10" id="AHV-Z3-Ehy"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="N2F-iV-sZJ" secondAttribute="bottom" constant="10" id="FMv-PQ-Gmz"/>
+                            <constraint firstItem="N2F-iV-sZJ" firstAttribute="centerY" secondItem="GTF-2a-2kw" secondAttribute="centerY" id="anX-m0-AQv"/>
+                            <constraint firstItem="N2F-iV-sZJ" firstAttribute="top" secondItem="GTF-2a-2kw" secondAttribute="top" constant="10" id="oyT-sU-BVc"/>
+                            <constraint firstAttribute="trailing" secondItem="N2F-iV-sZJ" secondAttribute="trailing" constant="10" id="vUl-Dz-zNs"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="GTF-2a-2kw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ONN-pm-CXx"/>
+                    <constraint firstItem="GTF-2a-2kw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="bqB-FB-04F"/>
+                    <constraint firstAttribute="bottom" secondItem="GTF-2a-2kw" secondAttribute="bottom" constant="10" id="gbf-Gn-uHt"/>
+                    <constraint firstAttribute="trailing" secondItem="GTF-2a-2kw" secondAttribute="trailing" constant="10" id="lsE-Pb-uHR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="authorLabel" destination="tA2-Sv-Ju3" id="15N-D2-hEc"/>
+                <outlet property="titleLabel" destination="yfq-90-Quz" id="2pU-nf-7kV"/>
+                <outlet property="view" destination="GTF-2a-2kw" id="lKP-6i-sQz"/>
+                <outlet property="yearLabel" destination="vKH-Rb-ilw" id="YWg-G9-as1"/>
+            </connections>
+            <point key="canvasLocation" x="134.78260869565219" y="112.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

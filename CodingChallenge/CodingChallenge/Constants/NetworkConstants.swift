@@ -9,7 +9,7 @@ import Foundation
 
 struct NetworkConstants {
 	
-	static private let baseURL = ""
+	static private let baseURL = "https://openlibrary.org/"
 
 	static func getBaseUrl() -> String {
 		return NetworkConstants.baseURL
