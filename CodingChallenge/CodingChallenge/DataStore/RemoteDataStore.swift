@@ -8,24 +8,36 @@
 import Foundation
 
 class RemoteDataStore: DataStore {
+	private let urlSession: URLSession
+
+	init(urlSession: URLSession = URLSession.shared) {
+		self.urlSession = urlSession
+	}
+
 	func fetch(query: String, completion: @escaping (Result<[Book], Error>) -> Void) {
-		let apiRequest = ApiManager<[Book]>(successHandler: { bookData in
-			guard bookData.count > 0 else {
-				completion(.failure(AppError.dataMissing))
+
+		var components = URLComponents()
+		components.scheme = "https"
+		components.host = "openlibrary.org"
+		components.path = "/search.json/"
+		components.queryItems = [URLQueryItem(name: "q", value: query),
+								 URLQueryItem(name: "limit", value: "10")]
+
+		let task = URLSession.shared.dataTask(with: components.url!) {(data, response, error) in
+			guard let data = data else {
+				completion(.failure(DataStoreError.noData))
 				return
 			}
-			let books = bookData.count > 10 ? Array(bookData.prefix(10).self) : bookData
-			completion(.success(books))
-		}, nullDataSuccessHandler: { (httpStatusCode: HttpStatusCode) in
-			completion(.failure(AppError.dataMissing))
-		}, errorHandler: { (httpStatusCode, errorMessage) in
-			completion(.failure(AppError.dataMissing))
-		})
-		apiRequest.makeNetworkCall(
-			for: .search(searchText: query),
-			with: nil,
-			requestType: .get,
-			withLoader: true
-		)
+
+			do {
+				let decoder = JSONDecoder()
+				let response = try decoder.decode(ApiResponse.self, from: data)
+				completion(.success(response.books))
+			} catch {
+				completion(.failure(DataStoreError.noData))
+			}
+		}
+
+		task.resume()
 	}
 }

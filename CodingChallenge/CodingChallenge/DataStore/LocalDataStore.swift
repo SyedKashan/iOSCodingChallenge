@@ -30,10 +30,10 @@ class LocalDataStore: DataStore {
 		do {
 			let results = try context.fetch(fetchRequest)
 			if results.count > 0 {
-				let books = results.compactMap{ $0.apiModel() as? Book }
+				let books = results.compactMap{ $0.apiModel() }
 				completion(.success(books))
 			} else {
-				completion(.failure(AppError.dataMissing))
+				completion(.failure(DataStoreError.noData))
 			}
 		} catch {
 			fatalError("fetch request for entity Book predicate failed")
@@ -46,7 +46,7 @@ class LocalDataStore: DataStore {
 //		DispatchQueue.global(qos: .background) {
 			let context = persistentContainer.viewContext
 			items
-				.compactMap { BookEntity.init(apiModel: $0, context: context)}
+				.compactMap { BookEntity.init(book: $0, context: context)}
 				.forEach { context.insert($0) }
 //		}
 	}

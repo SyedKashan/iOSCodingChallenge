@@ -19,7 +19,6 @@
 "min_length" = "Text should be greater than 3 characters";
 
 // Alert styling
-
 "dismiss" = "Dismiss";
 
 // Instance Errors

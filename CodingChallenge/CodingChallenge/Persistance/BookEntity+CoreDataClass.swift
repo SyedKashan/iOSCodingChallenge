@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 @objc(BookEntity)
-public class BookEntity: NSManagedObject, DatabaseEntity {
+public class BookEntity: NSManagedObject {
 
 	required convenience init(
-		apiModel: Identifiable,
+		book: Book,
 		context: NSManagedObjectContext
 	) {
 		let entity = NSEntityDescription.entity(
@@ -21,23 +21,26 @@ public class BookEntity: NSManagedObject, DatabaseEntity {
 			in: context
 		)
 		self.init(entity: entity!, insertInto: context)
-		guard let book = apiModel as? Book else { return }
 		id = book.id
 		title = book.title
 		if let cover = book.cover {
 			self.cover = Int32(cover)
 		}
-		year = Int32(book.year)
+		if let year = book.year {
+			self.year = Int32(year)
+		}
+		
 		authors = book.authors
 
 	}
 
-	func apiModel() -> Identifiable {
-		return Book(
+	func apiModel() -> Book {
+		Book(
 			id: id,
 			title: title,
 			year: Int(year),
 			cover: Int(cover),
-			authors: authors)
+			authors: authors
+		)
 	}
 }

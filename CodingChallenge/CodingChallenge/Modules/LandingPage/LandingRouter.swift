@@ -11,6 +11,7 @@ import UIKit
 protocol LandingWireframe {
 	func routeToSearchResult(with searchText: String)
 }
+
 extension LandingRouter: LandingWireframe {}
 
 final class LandingRouter {

@@ -10,3 +10,7 @@ import Foundation
 protocol DataStore {
 	func fetch(query: String, completion: @escaping (Result<[Book], Error>) -> Void)
 }
+
+enum DataStoreError: Error {
+	case noData
+}

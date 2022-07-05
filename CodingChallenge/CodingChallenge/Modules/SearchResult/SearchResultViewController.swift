@@ -9,6 +9,7 @@ import UIKit
 
 protocol SearchResultViewControllerProtocol {
 	func update(with books: [Book])
+	func update(with state: StateSearchResult)
 }
 
 extension SearchResultViewController: SearchResultViewControllerProtocol,
@@ -16,39 +17,29 @@ extension SearchResultViewController: SearchResultViewControllerProtocol,
 
 final class SearchResultViewController: UIViewController {
 	
-	// MARK: - Properties -
-	// MARK: Outlets
 	@IBOutlet private weak var tableView: UITableView!
+	@IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
 	
-	// MARK: Internal
 	var interactor: SearchResultInteractorProtocol?
 	
-	// MARK: Private
 	private var books = [Book]()
-	
-	// MARK: - Functions -
-	// MARK: Overrides
+	private var hidesLoadingIndicator: Bool = true {
+		 didSet {
+			 guard isViewLoaded else { return }
+			 loadingIndicator.isHidden = hidesLoadingIndicator
+			 hidesLoadingIndicator ? loadingIndicator.stopAnimating() : loadingIndicator.startAnimating()
+		 }
+	}
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		setupNavigation()
-		setupUI()
+		self.navigationController?.navigationBar.tintColor = .black
+		tableView.register(UINib(nibName: String(describing: BookTableViewCell.self), bundle: nil),
+						   forCellReuseIdentifier: String(describing: BookTableViewCell.self))
 		
 		interactor?.fetchQuery()
     }
-}
-
-// MARK: UI Setup
-extension SearchResultViewController {
-	func setupNavigation() {
-		
-		self.navigationController?.navigationBar.tintColor = .black
-	}
-	
-	func setupUI() {
-		tableView.register(UINib(nibName: Constants.bookTableViewCell, bundle: nil),
-						   forCellReuseIdentifier: Constants.bookTableViewCell)
-	}
 }
 
 // MARK: update state of view
@@ -60,6 +51,23 @@ extension SearchResultViewController {
 			self.tableView.reloadData()
 		}
 	}
+	
+	func update(with state: StateSearchResult) {
+		DispatchQueue.main.async { [weak self] in
+			switch state {
+			case .loaded(let books):
+				self?.hidesLoadingIndicator = true
+				self?.books = books
+				self?.tableView.reloadData()
+			case .loading:
+				self?.hidesLoadingIndicator = false
+			case .noData:
+				self?.hidesLoadingIndicator = true
+			case .noConnection:
+				self?.hidesLoadingIndicator = true
+			}
+		}
+	}
 }
 
 extension SearchResultViewController {
@@ -69,7 +77,7 @@ extension SearchResultViewController {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.bookTableViewCell) as? BookTableViewCell else {
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookTableViewCell.self)) as? BookTableViewCell else {
 			fatalError(LocalizableConstants.bookCellInstantiate)
 		}
 		cell.configureCell(with: books[indexPath.row])

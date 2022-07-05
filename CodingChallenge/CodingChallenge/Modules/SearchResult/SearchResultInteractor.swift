@@ -14,8 +14,10 @@ protocol SearchResultInteractorProtocol {
 extension SearchResultInteractor: SearchResultInteractorProtocol {}
 
 enum StateSearchResult {
-	case success([Book])
-	case empty
+	case loaded([Book])
+	case loading
+	case noData
+	case noConnection
 }
 
 final class SearchResultInteractor {
@@ -33,12 +35,13 @@ final class SearchResultInteractor {
 	}
 	
 	func fetchQuery() {
+		presenter?.update(with: .loading)
 		localDataStore.fetch(query: searchString) {[weak self] result in
 			switch result {
 			case .success(let books):
 				books.isEmpty
 					? self?.fetchFromRemote()
-					: self?.presenter?.update(with: books)
+					: self?.presenter?.update(with: .loaded(books))
 			case .failure:
 				self?.fetchFromRemote()
 			}
@@ -52,8 +55,8 @@ final class SearchResultInteractor {
 				if books.isEmpty {
 					self?.presenter?.updateNoData()
 				} else {
-					self?.presenter?.update(with: books)
-//					self?.localDataStore.save(items: books)
+					self?.presenter?.update(with: .loaded(books))
+					self?.localDataStore.save(items: books)
 				}
 			case .failure:
 				self?.presenter?.updateNoData()

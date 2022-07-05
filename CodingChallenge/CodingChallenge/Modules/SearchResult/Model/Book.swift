@@ -18,13 +18,13 @@ struct Book: Identifiable, Codable {
 	}
 	var id: String
 	let title: String
-	let year: Int
+	let year: Int?
 	let authors: [String]
 	let cover: Int?
 	
 	init(id: String,
 		 title: String,
-		 year: Int,
+		 year: Int?,
 		 cover: Int?,
 		 authors: [String]
 	) {
@@ -33,15 +33,6 @@ struct Book: Identifiable, Codable {
 		self.year = year
 		self.authors = authors
 		self.cover = cover
-	}
-	
-	public init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		id = try values.decode(at: .id)
-		title = try values.decode(at: .title)
-		year = try values.decode(at: .year)
-		authors = try values.decode(at: .authors)
-		cover = try? values.decodeIfPresent(at: .cover)
 	}
 }
 
