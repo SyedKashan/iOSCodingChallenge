@@ -37,6 +37,10 @@
 		CE79DF26287459F5001C5DEC /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79DF25287459F5001C5DEC /* BookModel.swift */; };
 		CE79DF2828745E42001C5DEC /* LandingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79DF2728745E42001C5DEC /* LandingRouter.swift */; };
 		CE79DF2A28745F26001C5DEC /* SearchResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79DF2928745F26001C5DEC /* SearchResultRouter.swift */; };
+		CEAA43932874836100405D5E /* LocalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA43922874836100405D5E /* LocalDataStore.swift */; };
+		CEAA43952874836B00405D5E /* RemoteDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA43942874836B00405D5E /* RemoteDataStore.swift */; };
+		CEAA4397287483A400405D5E /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA4396287483A400405D5E /* DataStore.swift */; };
+		CEAA43992874845E00405D5E /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA43982874845E00405D5E /* AppError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +76,10 @@
 		CE79DF25287459F5001C5DEC /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		CE79DF2728745E42001C5DEC /* LandingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingRouter.swift; sourceTree = "<group>"; };
 		CE79DF2928745F26001C5DEC /* SearchResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRouter.swift; sourceTree = "<group>"; };
+		CEAA43922874836100405D5E /* LocalDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataStore.swift; sourceTree = "<group>"; };
+		CEAA43942874836B00405D5E /* RemoteDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataStore.swift; sourceTree = "<group>"; };
+		CEAA4396287483A400405D5E /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		CEAA43982874845E00405D5E /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +114,7 @@
 			children = (
 				CE79DEE52873A826001C5DEC /* Appdelegate */,
 				CE79DEE62873A836001C5DEC /* Constants */,
+				CEAA43912874834D00405D5E /* DataStore */,
 				CE79DEF22873AE15001C5DEC /* Extensions */,
 				CE79DEE72873A842001C5DEC /* Helper */,
 				CE79DEE22873A7F6001C5DEC /* Modules */,
@@ -183,6 +192,7 @@
 				CE79DF1D2874538E001C5DEC /* Constants.swift */,
 				CE79DF1328744E56001C5DEC /* LocalizableConstants.swift */,
 				CE79DEFB2873B096001C5DEC /* NetworkConstants.swift */,
+				CEAA43982874845E00405D5E /* AppError.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -257,6 +267,16 @@
 				CE79DF25287459F5001C5DEC /* BookModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CEAA43912874834D00405D5E /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+				CEAA4396287483A400405D5E /* DataStore.swift */,
+				CEAA43922874836100405D5E /* LocalDataStore.swift */,
+				CEAA43942874836B00405D5E /* RemoteDataStore.swift */,
+			);
+			path = DataStore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,10 +367,14 @@
 				CE79DF1728745062001C5DEC /* SearchResultViewController.swift in Sources */,
 				CE79DF1E2874538E001C5DEC /* Constants.swift in Sources */,
 				CE79DF1B2874508A001C5DEC /* SearchResultInteractor.swift in Sources */,
+				CEAA43932874836100405D5E /* LocalDataStore.swift in Sources */,
 				CE79DF002873B37D001C5DEC /* Data.swift in Sources */,
+				CEAA43952874836B00405D5E /* RemoteDataStore.swift in Sources */,
 				CE79DF2228745830001C5DEC /* BookTableViewCell.swift in Sources */,
 				CE79DEFE2873B32C001C5DEC /* UIViewController.swift in Sources */,
 				CE79DECD2873A442001C5DEC /* CodingChallenge.xcdatamodeld in Sources */,
+				CEAA43992874845E00405D5E /* AppError.swift in Sources */,
+				CEAA4397287483A400405D5E /* DataStore.swift in Sources */,
 				CE79DF26287459F5001C5DEC /* BookModel.swift in Sources */,
 				CE79DF192874507E001C5DEC /* SearchResultPresenter.swift in Sources */,
 				CE79DEEB2873ACA0001C5DEC /* ApiEndpoints.swift in Sources */,

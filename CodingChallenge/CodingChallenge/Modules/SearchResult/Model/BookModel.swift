@@ -1,5 +1,5 @@
 //
-//  BookModel.swift
+//  Book.swift
 //  CodingChallenge
 //
 //  Created by Syed Ali Kashan on 05/07/2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BookModel: Codable {
+struct Book: Codable {
 	
 	var key: String?
 	var title: String?

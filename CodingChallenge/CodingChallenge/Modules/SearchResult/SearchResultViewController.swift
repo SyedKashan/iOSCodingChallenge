@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SearchResultViewControllerProtocol {
-	func update(with state: StateSearchResult)
+	func update(with books: [Book])
 }
 
 extension SearchResultViewController: SearchResultViewControllerProtocol,
@@ -24,7 +24,7 @@ final class SearchResultViewController: UIViewController {
 	var interactor: SearchResultInteractorProtocol?
 	
 	// MARK: Private
-	private var state: StateSearchResult?
+	private var books = [Book]()
 	
 	// MARK: - Functions -
 	// MARK: Overrides
@@ -34,7 +34,7 @@ final class SearchResultViewController: UIViewController {
 		setupNavigation()
 		setupUI()
 		
-		interactor?.viewDidLoad()
+		interactor?.fetchQuery()
     }
 }
 
@@ -42,7 +42,6 @@ final class SearchResultViewController: UIViewController {
 extension SearchResultViewController {
 	func setupNavigation() {
 		
-//		self.navigationController?.navigationBar.barStyle = .black
 		self.navigationController?.navigationBar.tintColor = .black
 	}
 	
@@ -55,9 +54,9 @@ extension SearchResultViewController {
 // MARK: update state of view
 extension SearchResultViewController {
 	
-	func update(with state: StateSearchResult) {
+	func update(with books: [Book]) {
 		DispatchQueue.main.async {
-			self.state = state
+			self.books = books
 			self.tableView.reloadData()
 		}
 	}
@@ -66,21 +65,14 @@ extension SearchResultViewController {
 extension SearchResultViewController {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		switch state {
-		case .success(let books): return books.count
-		default: return 0
-		}
+		books.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.bookTableViewCell) as? BookTableViewCell else {
 			fatalError(LocalizableConstants.bookCellInstantiate)
 		}
-		switch state {
-		case .success(let books):
-			cell.configureCell(with: books[indexPath.row])
-		default: fatalError(LocalizableConstants.logicError)
-		}
+		cell.configureCell(with: books[indexPath.row])
 		return cell
 	}
 }

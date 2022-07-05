@@ -34,7 +34,7 @@ extension BookTableViewCell {
 		view.layer.cornerRadius = 8
 	}
 	
-	func configureCell(with model: BookModel) {
+	func configureCell(with model: Book) {
 		titleLabel.text = model.title
 		authorLabel.text = model.authors?.joined(separator: "\n")
 		guard let year = model.year else {

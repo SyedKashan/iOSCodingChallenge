@@ -8,13 +8,13 @@
 import Foundation
 
 protocol SearchResultInteractorProtocol {
-	func viewDidLoad()
+	func fetchQuery()
 }
 
 extension SearchResultInteractor: SearchResultInteractorProtocol {}
 
 enum StateSearchResult {
-	case success([BookModel])
+	case success([Book])
 	case empty
 }
 
@@ -22,6 +22,8 @@ final class SearchResultInteractor {
 	
 	private let searchString: String
 	private let presenter: SearchResultPresenting?
+	private let localDataStore = LocalDataStore()
+	private let remoteDataStore = RemoteDataStore()
 	
 	init(presenter: SearchResultPresenting,
 		 with searchText: String
@@ -30,24 +32,29 @@ final class SearchResultInteractor {
 		self.presenter = presenter
 	}
 	
-	func viewDidLoad() {
-		let apiRequest = ApiManager<[BookModel]>(successHandler: { [weak self ] (bookData) in
-			guard bookData.count > 0 else {
-				self?.presenter?.update(with: .empty)
-				return
+	func fetchQuery() {
+		localDataStore.fetch(query: searchString) {[weak self] result in
+			switch result {
+			case .success(let books):
+				books.isEmpty
+					? self?.fetchFromRemote()
+					: self?.presenter?.update(with: books)
+			case .failure:
+				self?.fetchFromRemote()
 			}
-			let bookSlice = bookData.count > 10 ? Array(bookData.prefix(11).self) : bookData
-			self?.presenter?.update(with: .success(bookSlice))
-		}, nullDataSuccessHandler: { (httpStatusCode: HttpStatusCode) in
-			
-		}, errorHandler: { (httpStatusCode, errorMessage) in
-			
-		})
-		apiRequest.makeNetworkCall(
-			for: .search(searchText: searchString),
-			with: nil,
-			requestType: .get,
-			withLoader: true
-		)
+		}
+	}
+	
+	private func fetchFromRemote() {
+		remoteDataStore.fetch(query: searchString) { [weak self] result in
+			switch result {
+			case .success(let books):
+				books.isEmpty
+					? self?.presenter?.updateNoData()
+					: self?.presenter?.update(with: books)
+			case .failure:
+				self?.presenter?.updateNoData()
+			}
+		}
 	}
 }

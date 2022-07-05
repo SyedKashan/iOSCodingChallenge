@@ -8,7 +8,8 @@
 import Foundation
 
 protocol SearchResultPresenting {
-	func update(with state: StateSearchResult)
+	func update(with books: [Book])
+	func updateNoData()
 }
 
 extension SearchResultPresenter: SearchResultPresenting {}
@@ -21,7 +22,11 @@ final class SearchResultPresenter {
 		self.view = view
 	}
 	
-	func update(with state: StateSearchResult) {
-		view?.update(with: state)
+	func update(with books: [Book]) {
+		view?.update(with: books)
+	}
+	
+	func updateNoData() {
+		
 	}
 }
