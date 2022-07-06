@@ -53,7 +53,7 @@ extension BookTableViewCell {
 		} else {
 			yearLabel.isHidden = true
 		}
-		if let cover = model.cover {
+		if let cover = model.cover, cover != 0 {
 			// Request Image Using Image Service
 			imageRequest = imageService.image(for: "\(cover)") { [weak self] image in
 				// Update Image View
