@@ -11,6 +11,6 @@ protocol DataStore {
 	func fetch(query: String, completion: @escaping (Result<[Book], Error>) -> Void)
 }
 
-enum DataStoreError: Error {
-	case noData
+enum DataStoreError: String, Error {
+	case noData, noInternet
 }
