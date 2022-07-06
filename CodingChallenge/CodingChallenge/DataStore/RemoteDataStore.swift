@@ -10,19 +10,24 @@ import SystemConfiguration
 
 class RemoteDataStore: DataStore {
 	private let urlSession: URLSession
-
-	init(urlSession: URLSession = URLSession.shared) {
+	
+	init(
+		urlSession: URLSession = URLSession.shared
+	) {
 		self.urlSession = urlSession
 	}
 
-	func fetch(query: String, completion: @escaping (Result<[Book], Error>) -> Void) {
-
+	func fetch(
+		query: String,
+		fetchLimit: Int = Constants.fetchLimit,
+		completion: @escaping (Result<[Book], Error>) -> Void
+	) {
 		var components = URLComponents()
 		components.scheme = "https"
 		components.host = "openlibrary.org"
 		components.path = "/search.json/"
 		components.queryItems = [URLQueryItem(name: "q", value: query),
-								 URLQueryItem(name: "limit", value: "10")]
+								 URLQueryItem(name: "limit", value: "\(fetchLimit)")]
 
 		let task = URLSession.shared.dataTask(with: components.url!) {(data, response, error) in
 			guard let data = data else {

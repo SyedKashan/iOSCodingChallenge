@@ -10,7 +10,6 @@
 		CE691863287491B00058123D /* BookEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE691861287491B00058123D /* BookEntity+CoreDataClass.swift */; };
 		CE691864287491B00058123D /* BookEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE691862287491B00058123D /* BookEntity+CoreDataProperties.swift */; };
 		CE69187B2874DDF30058123D /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69187A2874DDF30058123D /* ImageService.swift */; };
-		CE6918822874F0530058123D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6918812874F0530058123D /* UIView.swift */; };
 		CE6918852874F6900058123D /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6918842874F6900058123D /* Validator.swift */; };
 		CE79DEC32873A442001C5DEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79DEC22873A442001C5DEC /* AppDelegate.swift */; };
 		CE79DEC72873A442001C5DEC /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79DEC62873A442001C5DEC /* LandingViewController.swift */; };
@@ -36,13 +35,14 @@
 		CEAA43952874836B00405D5E /* RemoteDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA43942874836B00405D5E /* RemoteDataStore.swift */; };
 		CEAA4397287483A400405D5E /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA4396287483A400405D5E /* DataStore.swift */; };
 		CEDCBA5C287581B4007E109A /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCBA5B287581B4007E109A /* ErrorState.swift */; };
+		CEDCBA5F28758F9D007E109A /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCBA5E28758F9D007E109A /* ErrorModel.swift */; };
+		CEDCBA64287593FB007E109A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCBA63287593FB007E109A /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CE691861287491B00058123D /* BookEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CE691862287491B00058123D /* BookEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE69187A2874DDF30058123D /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
-		CE6918812874F0530058123D /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		CE6918842874F6900058123D /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		CE79DEBF2873A442001C5DEC /* CodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE79DEC22873A442001C5DEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +70,8 @@
 		CEAA43942874836B00405D5E /* RemoteDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataStore.swift; sourceTree = "<group>"; };
 		CEAA4396287483A400405D5E /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		CEDCBA5B287581B4007E109A /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
+		CEDCBA5E28758F9D007E109A /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		CEDCBA63287593FB007E109A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				CE79DEF72873AEFC001C5DEC /* String.swift */,
-				CE6918812874F0530058123D /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,6 +214,7 @@
 		CE79DF012873B943001C5DEC /* LandingPage */ = {
 			isa = PBXGroup;
 			children = (
+				CEDCBA5D28758F92007E109A /* Model */,
 				CE6918832874F6810058123D /* Validator */,
 				CE79DF022873BA50001C5DEC /* LandingInteractor.swift */,
 				CE79DF042873BA5D001C5DEC /* LandingPresenter.swift */,
@@ -257,6 +259,7 @@
 		CEAA43912874834D00405D5E /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
+				CEDCBA63287593FB007E109A /* Constants.swift */,
 				CEAA4396287483A400405D5E /* DataStore.swift */,
 				CEAA43922874836100405D5E /* LocalDataStore.swift */,
 				CEAA43942874836B00405D5E /* RemoteDataStore.swift */,
@@ -270,6 +273,14 @@
 				CEDCBA5B287581B4007E109A /* ErrorState.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		CEDCBA5D28758F92007E109A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEDCBA5E28758F9D007E109A /* ErrorModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,13 +356,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE6918822874F0530058123D /* UIView.swift in Sources */,
+				CEDCBA64287593FB007E109A /* Constants.swift in Sources */,
 				CE79DEC72873A442001C5DEC /* LandingViewController.swift in Sources */,
 				CE79DF1428744E56001C5DEC /* LocalizableConstants.swift in Sources */,
 				CE79DEC32873A442001C5DEC /* AppDelegate.swift in Sources */,
 				CE691864287491B00058123D /* BookEntity+CoreDataProperties.swift in Sources */,
 				CE691863287491B00058123D /* BookEntity+CoreDataClass.swift in Sources */,
 				CEDCBA5C287581B4007E109A /* ErrorState.swift in Sources */,
+				CEDCBA5F28758F9D007E109A /* ErrorModel.swift in Sources */,
 				CE79DF2828745E42001C5DEC /* LandingRouter.swift in Sources */,
 				CE79DEF82873AEFC001C5DEC /* String.swift in Sources */,
 				CE79DF032873BA50001C5DEC /* LandingInteractor.swift in Sources */,

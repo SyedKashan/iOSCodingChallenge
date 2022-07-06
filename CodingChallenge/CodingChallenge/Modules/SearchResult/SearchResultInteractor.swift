@@ -11,16 +11,7 @@ protocol SearchResultInteractorProtocol {
 	func fetchQuery()
 }
 
-extension SearchResultInteractor: SearchResultInteractorProtocol {}
-
-enum StateSearchResult {
-	case loaded([Book])
-	case loading
-	case noData
-	case noConnection
-}
-
-final class SearchResultInteractor {
+final class SearchResultInteractor: SearchResultInteractorProtocol {
 	
 	private let searchString: String
 	private let presenter: SearchResultPresenting?
@@ -52,13 +43,14 @@ final class SearchResultInteractor {
 		remoteDataStore.fetch(query: searchString) { [weak self] result in
 			switch result {
 			case .success(let books):
-				if books.isEmpty {
+				guard !books.isEmpty else {
 					self?.presenter?.update(with: .noData)
-				} else {
-					self?.presenter?.update(with: .loaded(books))
-					self?.localDataStore.save(items: books)
+					return
 				}
+				self?.presenter?.update(with: .loaded(books))
+				self?.localDataStore.save(items: books)
 			case .failure(let error):
+				
 				if case DataStoreError.noInternet = error {
 					self?.presenter?.update(with: .noConnection)
 				} else {

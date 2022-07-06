@@ -11,19 +11,7 @@ protocol LandingInteractorProtocol {
 	func validate(with searchText: String?)
 }
 
-extension LandingInteractor: LandingInteractorProtocol {}
-
-struct ErrorModel {
-	let title: String
-	let errorMessage: String
-}
-
-enum State {
-	case valid
-	case error(ErrorModel)
-}
-
-final class LandingInteractor {
+final class LandingInteractor: LandingInteractorProtocol {
 	
 	private let presenter: LandingPresenting
 	private let validator: Validator

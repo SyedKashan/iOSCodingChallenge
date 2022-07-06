@@ -7,14 +7,13 @@
 
 import UIKit
 
-protocol SearchResultViewControllerProtocol {
-	func update(with state: StateSearchResult)
+protocol SearchResultViewControllerProtocol: AnyObject {
+	func updateContent(_ books: [Book])
+	func updateLoadingState(isLoading: Bool)
+	func showError(_ error: ErrorState)
 }
 
-extension SearchResultViewController: SearchResultViewControllerProtocol,
-									  UITableViewDataSource {}
-
-final class SearchResultViewController: UIViewController {
+final class SearchResultViewController: UIViewController, SearchResultViewControllerProtocol {
 	
 	@IBOutlet private weak var tableView: UITableView!
 	@IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
@@ -51,24 +50,16 @@ final class SearchResultViewController: UIViewController {
 
 // MARK: update state of view
 extension SearchResultViewController {
+	func updateContent(_ books: [Book]) {
+		self.books = books
+		tableView.reloadData()
+	}
 	
-	func update(with state: StateSearchResult) {
-		DispatchQueue.main.async { [weak self] in
-			switch state {
-			case .loaded(let books):
-				self?.hidesLoadingIndicator = true
-				self?.books = books
-				self?.tableView.reloadData()
-			case .loading:
-				self?.hidesLoadingIndicator = false
-			case .noData:
-				self?.hidesLoadingIndicator = true
-				self?.setErrorEmptyView(with: .noData)
-			case .noConnection:
-				self?.hidesLoadingIndicator = true
-				self?.setErrorEmptyView(with: .noInternet)
-			}
-		}
+	func updateLoadingState(isLoading: Bool) {
+		hidesLoadingIndicator = !isLoading
+	}
+	func showError(_ error: ErrorState) {
+		setErrorEmptyView(with: error)
 	}
 	
 	private func setErrorEmptyView(with state: ErrorState) {
@@ -76,25 +67,23 @@ extension SearchResultViewController {
 		switch state {
 		case .noInternet:
 			imageViewError.image = UIImage(named: "icon_no_wifi")
-			messageLabel.text = "no_internet".localized
+			messageLabel.text = LocalizableConstants.noInternet.localized
 		case .noData:
 			imageViewError.image = UIImage(named: "icon_sad")
-			messageLabel.text = "no_data_found".localized
+			messageLabel.text = LocalizableConstants.noDataFound.localized
 		}
 	}
 }
 
-extension SearchResultViewController {
+extension SearchResultViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		books.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookTableViewCell.self)) as? BookTableViewCell else {
-			fatalError(LocalizableConstants.bookCellInstantiate)
-		}
-		cell.configureCell(with: books[indexPath.row])
+		let cell = tableView.dequeueReusableCell(withIdentifier: "BookTableViewCell", for: indexPath)
+		(cell as? BookTableViewCell)?.configureCell(with: books[indexPath.row])
 		return cell
 	}
 }

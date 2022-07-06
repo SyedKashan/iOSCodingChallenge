@@ -17,7 +17,6 @@ extension LandingRouter: LandingWireframe {}
 final class LandingRouter {
 
 	let view: UIViewController?
-	
 	init(view: UIViewController) {
 		self.view = view
 	}
@@ -26,7 +25,6 @@ final class LandingRouter {
 extension LandingRouter {
 	
 	func routeToSearchResult(with searchText: String) {
-		
 		let controller = SearchResultRouter.createModule(with: searchText)
 		view?.navigationController?.pushViewController(controller, animated: true)
 	}
