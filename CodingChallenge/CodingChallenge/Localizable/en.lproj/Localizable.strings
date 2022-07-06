@@ -10,17 +10,18 @@
 "app_name" = "Coding Challenge";
 
 // Generic Errors
+"uh_oh_alert_title" = "Uh oh!";
 "no_internet" = "Please check your internet connection";
 "something_wrong" = "Something went wrong";
+"no_data_found" = "No data available for the searched query";
 "validation_error" = "Validation Error";
 "empty_string" = "Please enter something to search";
 "min_length" = "Text should be greater than 3 characters";
 
 // Alert styling
-
 "dismiss" = "Dismiss";
 
 // Instance Errors
 "logic_error" = "Logic error";
-"book_cell_instantiate" = "BookTableViewCell not instantiated"
+"book_cell_instantiate" = "BookTableViewCell not instantiated";
 

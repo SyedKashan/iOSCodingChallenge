@@ -28,33 +28,16 @@
                                     <constraint firstAttribute="height" constant="50" id="UaI-Gi-4xR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="CUN-yx-FGU"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRT-2t-cfZ">
-                                <rect key="frame" x="41.5" y="788" width="331" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="9tb-d7-jQz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Ok">
-                                    <color key="titleColor" systemColor="labelColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapSearchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iWw-wn-ioB"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="n7l-WC-ikn" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ERa-D6-egC"/>
-                            <constraint firstItem="MRT-2t-cfZ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Kiv-7p-bVl"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MRT-2t-cfZ" secondAttribute="bottom" constant="30" id="RQQ-eQ-YSk"/>
-                            <constraint firstItem="MRT-2t-cfZ" firstAttribute="width" secondItem="KcL-6p-7te" secondAttribute="width" id="WQY-zn-QRb"/>
                             <constraint firstItem="n7l-WC-ikn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="aGI-zJ-UGV"/>
                             <constraint firstItem="KcL-6p-7te" firstAttribute="top" secondItem="n7l-WC-ikn" secondAttribute="bottom" constant="150" id="bem-7i-UtC"/>
                             <constraint firstItem="KcL-6p-7te" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="fF6-Ic-E1s"/>
@@ -63,7 +46,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="7Ah-VY-yT3"/>
                     <connections>
-                        <outlet property="searchButton" destination="MRT-2t-cfZ" id="Nvt-a2-IAO"/>
                         <outlet property="searchTextfield" destination="KcL-6p-7te" id="goW-eK-Fyp"/>
                     </connections>
                 </viewController>
@@ -79,24 +61,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="d7r-1C-bRB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="d7r-1C-bRB">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="AmG-sq-BVH" id="8xK-ti-Qqh"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="u5q-d2-lW4">
+                                <rect key="frame" x="185" y="431" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="YmR-FC-mNM"/>
+                                    <constraint firstAttribute="height" constant="44" id="vjd-9e-eQI"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kOo-Di-l4N"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="d7r-1C-bRB" firstAttribute="leading" secondItem="kOo-Di-l4N" secondAttribute="leading" id="8fS-5z-RDR"/>
+                            <constraint firstItem="u5q-d2-lW4" firstAttribute="centerY" secondItem="kOo-Di-l4N" secondAttribute="centerY" id="b2h-Mg-jOf"/>
                             <constraint firstItem="kOo-Di-l4N" firstAttribute="bottom" secondItem="d7r-1C-bRB" secondAttribute="bottom" id="eDj-X4-MJ8"/>
                             <constraint firstItem="kOo-Di-l4N" firstAttribute="trailing" secondItem="d7r-1C-bRB" secondAttribute="trailing" id="oH2-ll-vHc"/>
                             <constraint firstItem="d7r-1C-bRB" firstAttribute="top" secondItem="kOo-Di-l4N" secondAttribute="top" id="oaR-2W-OSK"/>
+                            <constraint firstItem="u5q-d2-lW4" firstAttribute="centerX" secondItem="kOo-Di-l4N" secondAttribute="centerX" id="okA-Ii-SdO"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadingIndicator" destination="u5q-d2-lW4" id="PC2-j0-Jq9"/>
                         <outlet property="tableView" destination="d7r-1C-bRB" id="bo2-Sd-eOr"/>
                     </connections>
                 </viewController>
@@ -122,9 +114,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

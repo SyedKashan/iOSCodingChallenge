@@ -16,71 +16,72 @@ extension SearchResultViewController: SearchResultViewControllerProtocol,
 
 final class SearchResultViewController: UIViewController {
 	
-	// MARK: - Properties -
-	// MARK: Outlets
 	@IBOutlet private weak var tableView: UITableView!
+	@IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
 	
-	// MARK: Internal
 	var interactor: SearchResultInteractorProtocol?
 	
-	// MARK: Private
-	private var state: StateSearchResult?
-	
-	// MARK: - Functions -
-	// MARK: Overrides
+	private var books = [Book]()
+	private var hidesLoadingIndicator: Bool = true {
+		 didSet {
+			 guard isViewLoaded else { return }
+			 hidesLoadingIndicator ? loadingIndicator.stopAnimating() : loadingIndicator.startAnimating()
+		 }
+	}
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		setupNavigation()
-		setupUI()
-		
-		interactor?.viewDidLoad()
-    }
-}
-
-// MARK: UI Setup
-extension SearchResultViewController {
-	func setupNavigation() {
-		
-//		self.navigationController?.navigationBar.barStyle = .black
 		self.navigationController?.navigationBar.tintColor = .black
-	}
-	
-	func setupUI() {
-		tableView.register(UINib(nibName: Constants.bookTableViewCell, bundle: nil),
-						   forCellReuseIdentifier: Constants.bookTableViewCell)
-	}
+		tableView.register(UINib(nibName: String(describing: BookTableViewCell.self), bundle: nil),
+						   forCellReuseIdentifier: String(describing: BookTableViewCell.self))
+		
+		interactor?.fetchQuery()
+    }
 }
 
 // MARK: update state of view
 extension SearchResultViewController {
 	
 	func update(with state: StateSearchResult) {
-		DispatchQueue.main.async {
-			self.state = state
-			self.tableView.reloadData()
+		DispatchQueue.main.async { [weak self] in
+			switch state {
+			case .loaded(let books):
+				self?.hidesLoadingIndicator = true
+				self?.books = books
+				self?.tableView.reloadData()
+			case .loading:
+				self?.hidesLoadingIndicator = false
+			case .noData:
+				self?.hidesLoadingIndicator = true
+				self?.setErrorEmptyView(with: .noData)
+			case .noConnection:
+				self?.hidesLoadingIndicator = true
+				self?.setErrorEmptyView(with: .noInternet)
+			}
 		}
+	}
+	
+	private func setErrorEmptyView(with state: ErrorState) {
+		let view: ErrorView = UIView.fromNib()
+		view.updateView(with: state)
+		self.tableView.addSubview(view)
+		view.translatesAutoresizingMaskIntoConstraints = false
+		view.center = self.tableView.center
 	}
 }
 
 extension SearchResultViewController {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		switch state {
-		case .success(let books): return books.count
-		default: return 0
-		}
+		books.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.bookTableViewCell) as? BookTableViewCell else {
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookTableViewCell.self)) as? BookTableViewCell else {
 			fatalError(LocalizableConstants.bookCellInstantiate)
 		}
-		switch state {
-		case .success(let books):
-			cell.configureCell(with: books[indexPath.row])
-		default: fatalError(LocalizableConstants.logicError)
-		}
+		cell.configureCell(with: books[indexPath.row])
 		return cell
 	}
 }

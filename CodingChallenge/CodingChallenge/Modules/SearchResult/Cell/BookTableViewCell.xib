@@ -20,30 +20,53 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTF-2a-2kw">
                         <rect key="frame" x="10" y="10" width="300" height="132"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="N2F-iV-sZJ">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="N2F-iV-sZJ">
                                 <rect key="frame" x="10" y="10" width="280" height="112"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfq-90-Quz">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="37.5"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKH-Rb-ilw">
-                                        <rect key="frame" x="0.0" y="37.5" width="280" height="37"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tA2-Sv-Ju3">
-                                        <rect key="frame" x="0.0" y="74.5" width="280" height="37.5"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nWc-o2-VoA">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="112"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_polestar" translatesAutoresizingMaskIntoConstraints="NO" id="fr7-Rk-6Ef">
+                                                <rect key="frame" x="10" y="16" width="80" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="MFn-SS-bcE"/>
+                                                    <constraint firstAttribute="height" constant="80" id="dYI-nR-76Y"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="fr7-Rk-6Ef" firstAttribute="centerY" secondItem="nWc-o2-VoA" secondAttribute="centerY" id="Vxo-g1-GRV"/>
+                                            <constraint firstItem="fr7-Rk-6Ef" firstAttribute="centerX" secondItem="nWc-o2-VoA" secondAttribute="centerX" id="gjp-Ag-ja4"/>
+                                            <constraint firstAttribute="width" constant="100" id="gzR-lY-8vC"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="2B4-GA-hji">
+                                        <rect key="frame" x="100" y="0.0" width="180" height="112"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfq-90-Quz">
+                                                <rect key="frame" x="0.0" y="0.0" width="180" height="37.5"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKH-Rb-ilw">
+                                                <rect key="frame" x="0.0" y="37.5" width="180" height="37"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tA2-Sv-Ju3">
+                                                <rect key="frame" x="0.0" y="74.5" width="180" height="37.5"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="uaf-mR-tra"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="90" id="uaf-mR-tra"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -67,6 +90,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="authorLabel" destination="tA2-Sv-Ju3" id="15N-D2-hEc"/>
+                <outlet property="coverImage" destination="fr7-Rk-6Ef" id="gry-kb-P3K"/>
                 <outlet property="titleLabel" destination="yfq-90-Quz" id="2pU-nf-7kV"/>
                 <outlet property="view" destination="GTF-2a-2kw" id="lKP-6i-sQz"/>
                 <outlet property="yearLabel" destination="vKH-Rb-ilw" id="YWg-G9-as1"/>
@@ -75,6 +99,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icon_polestar" width="150" height="119"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

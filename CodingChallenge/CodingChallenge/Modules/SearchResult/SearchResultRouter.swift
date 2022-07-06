@@ -14,17 +14,19 @@ final class SearchResultRouter {
 
 	static func createModule(with searchText: String) -> UIViewController {
 
-		// Change to get view from storyboard if not using progammatic UI
-		let storyboard = UIStoryboard(name: Constants.main, bundle: nil)
-		guard let view = storyboard.instantiateViewController(withIdentifier: Constants.searchResultViewController) as? SearchResultViewController else {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let view = storyboard.instantiateViewController(withIdentifier: String(describing: SearchResultViewController.self)) as? SearchResultViewController else {
 			fatalError("SearchResultViewController unwrapped failed")
 		}
+		let router = SearchResultRouter()
 		let presenter = SearchResultPresenter(view: view)
 		let interactor = SearchResultInteractor(presenter: presenter,
 												with: searchText)
 		
 		view.interactor = interactor
+		router.viewController = view
 
 		return view
 	}
 }
+

@@ -8,20 +8,24 @@
 import Foundation
 
 protocol SearchResultInteractorProtocol {
-	func viewDidLoad()
+	func fetchQuery()
 }
 
 extension SearchResultInteractor: SearchResultInteractorProtocol {}
 
 enum StateSearchResult {
-	case success([BookModel])
-	case empty
+	case loaded([Book])
+	case loading
+	case noData
+	case noConnection
 }
 
 final class SearchResultInteractor {
 	
 	private let searchString: String
 	private let presenter: SearchResultPresenting?
+	private let localDataStore = LocalDataStore.shared
+	private let remoteDataStore = RemoteDataStore()
 	
 	init(presenter: SearchResultPresenting,
 		 with searchText: String
@@ -30,24 +34,38 @@ final class SearchResultInteractor {
 		self.presenter = presenter
 	}
 	
-	func viewDidLoad() {
-		let apiRequest = ApiManager<[BookModel]>(successHandler: { [weak self ] (bookData) in
-			guard bookData.count > 0 else {
-				self?.presenter?.update(with: .empty)
-				return
+	func fetchQuery() {
+		presenter?.update(with: .loading)
+		localDataStore.fetch(query: searchString) {[weak self] result in
+			switch result {
+			case .success(let books):
+				books.isEmpty
+					? self?.fetchFromRemote()
+					: self?.presenter?.update(with: .loaded(books))
+			case .failure:
+				self?.fetchFromRemote()
 			}
-			let bookSlice = bookData.count > 10 ? Array(bookData.prefix(11).self) : bookData
-			self?.presenter?.update(with: .success(bookSlice))
-		}, nullDataSuccessHandler: { (httpStatusCode: HttpStatusCode) in
-			
-		}, errorHandler: { (httpStatusCode, errorMessage) in
-			
-		})
-		apiRequest.makeNetworkCall(
-			for: .search(searchText: searchString),
-			with: nil,
-			requestType: .get,
-			withLoader: true
-		)
+		}
+	}
+	
+	private func fetchFromRemote() {
+		remoteDataStore.fetch(query: searchString) { [weak self] result in
+			switch result {
+			case .success(let books):
+				if books.isEmpty {
+					self?.presenter?.update(with: .noData)
+				} else {
+					self?.presenter?.update(with: .loaded(books))
+					self?.localDataStore.save(items: books)
+				}
+			case .failure(let error):
+				if case DataStoreError.noInternet = error {
+					self?.presenter?.update(with: .noConnection)
+				} else {
+					self?.presenter?.update(with: .noData)
+				}
+			}
+		}
 	}
 }
+
