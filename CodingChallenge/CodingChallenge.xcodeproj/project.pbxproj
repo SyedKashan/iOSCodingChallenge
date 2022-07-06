@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		CE691863287491B00058123D /* BookEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE691861287491B00058123D /* BookEntity+CoreDataClass.swift */; };
 		CE691864287491B00058123D /* BookEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE691862287491B00058123D /* BookEntity+CoreDataProperties.swift */; };
-		CE6918702874AA080058123D /* SearchResultErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69186F2874AA080058123D /* SearchResultErrorView.swift */; };
-		CE6918742874ACD70058123D /* SearchResultErrorViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6918732874ACD70058123D /* SearchResultErrorViewRouter.swift */; };
-		CE6918762874AE9F0058123D /* SearchResultErrorViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6918752874AE9E0058123D /* SearchResultErrorViewPresenter.swift */; };
 		CE69187B2874DDF30058123D /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69187A2874DDF30058123D /* ImageService.swift */; };
+		CE69187F2874EE550058123D /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69187D2874EE550058123D /* ErrorView.swift */; };
+		CE6918802874EE550058123D /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE69187E2874EE550058123D /* ErrorView.xib */; };
+		CE6918822874F0530058123D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6918812874F0530058123D /* UIView.swift */; };
+		CE6918852874F6900058123D /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6918842874F6900058123D /* Validator.swift */; };
 		CE79DEC32873A442001C5DEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79DEC22873A442001C5DEC /* AppDelegate.swift */; };
 		CE79DEC72873A442001C5DEC /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79DEC62873A442001C5DEC /* LandingViewController.swift */; };
 		CE79DECA2873A442001C5DEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE79DEC82873A442001C5DEC /* Main.storyboard */; };
@@ -41,10 +42,11 @@
 /* Begin PBXFileReference section */
 		CE691861287491B00058123D /* BookEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CE691862287491B00058123D /* BookEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		CE69186F2874AA080058123D /* SearchResultErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultErrorView.swift; sourceTree = "<group>"; };
-		CE6918732874ACD70058123D /* SearchResultErrorViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultErrorViewRouter.swift; sourceTree = "<group>"; };
-		CE6918752874AE9E0058123D /* SearchResultErrorViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultErrorViewPresenter.swift; sourceTree = "<group>"; };
 		CE69187A2874DDF30058123D /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		CE69187D2874EE550058123D /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		CE69187E2874EE550058123D /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
+		CE6918812874F0530058123D /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		CE6918842874F6900058123D /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		CE79DEBF2873A442001C5DEC /* CodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE79DEC22873A442001C5DEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE79DEC62873A442001C5DEC /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -86,9 +88,8 @@
 		CE69186E2874A9EE0058123D /* SearchResultErrorView */ = {
 			isa = PBXGroup;
 			children = (
-				CE69186F2874AA080058123D /* SearchResultErrorView.swift */,
-				CE6918732874ACD70058123D /* SearchResultErrorViewRouter.swift */,
-				CE6918752874AE9E0058123D /* SearchResultErrorViewPresenter.swift */,
+				CE69187D2874EE550058123D /* ErrorView.swift */,
+				CE69187E2874EE550058123D /* ErrorView.xib */,
 			);
 			path = SearchResultErrorView;
 			sourceTree = "<group>";
@@ -99,6 +100,14 @@
 				CE69187A2874DDF30058123D /* ImageService.swift */,
 			);
 			path = ImageService;
+			sourceTree = "<group>";
+		};
+		CE6918832874F6810058123D /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				CE6918842874F6900058123D /* Validator.swift */,
+			);
+			path = Validator;
 			sourceTree = "<group>";
 		};
 		CE79DEB62873A442001C5DEC = {
@@ -207,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				CE79DEF72873AEFC001C5DEC /* String.swift */,
+				CE6918812874F0530058123D /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -214,6 +224,7 @@
 		CE79DF012873B943001C5DEC /* LandingPage */ = {
 			isa = PBXGroup;
 			children = (
+				CE6918832874F6810058123D /* Validator */,
 				CE79DF022873BA50001C5DEC /* LandingInteractor.swift */,
 				CE79DF042873BA5D001C5DEC /* LandingPresenter.swift */,
 				CE79DEC62873A442001C5DEC /* LandingViewController.swift */,
@@ -325,6 +336,7 @@
 				CE79DED22873A444001C5DEC /* LaunchScreen.storyboard in Resources */,
 				CE79DF062874426A001C5DEC /* Localizable.strings in Resources */,
 				CE79DECF2873A444001C5DEC /* Assets.xcassets in Resources */,
+				CE6918802874EE550058123D /* ErrorView.xib in Resources */,
 				CE79DECA2873A442001C5DEC /* Main.storyboard in Resources */,
 				CE79DF2328745830001C5DEC /* BookTableViewCell.xib in Resources */,
 			);
@@ -337,6 +349,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6918822874F0530058123D /* UIView.swift in Sources */,
+				CE69187F2874EE550058123D /* ErrorView.swift in Sources */,
 				CE79DEC72873A442001C5DEC /* LandingViewController.swift in Sources */,
 				CE79DF1428744E56001C5DEC /* LocalizableConstants.swift in Sources */,
 				CE79DEC32873A442001C5DEC /* AppDelegate.swift in Sources */,
@@ -347,12 +361,11 @@
 				CE79DF032873BA50001C5DEC /* LandingInteractor.swift in Sources */,
 				CE79DF052873BA5D001C5DEC /* LandingPresenter.swift in Sources */,
 				CE79DF2A28745F26001C5DEC /* SearchResultRouter.swift in Sources */,
-				CE6918702874AA080058123D /* SearchResultErrorView.swift in Sources */,
 				CE79DEEF2873AD61001C5DEC /* ApiResponse.swift in Sources */,
 				CE79DF1728745062001C5DEC /* SearchResultViewController.swift in Sources */,
-				CE6918742874ACD70058123D /* SearchResultErrorViewRouter.swift in Sources */,
 				CE79DF1B2874508A001C5DEC /* SearchResultInteractor.swift in Sources */,
 				CEAA43932874836100405D5E /* LocalDataStore.swift in Sources */,
+				CE6918852874F6900058123D /* Validator.swift in Sources */,
 				CEAA43952874836B00405D5E /* RemoteDataStore.swift in Sources */,
 				CE69187B2874DDF30058123D /* ImageService.swift in Sources */,
 				CE79DF2228745830001C5DEC /* BookTableViewCell.swift in Sources */,
@@ -360,7 +373,6 @@
 				CEAA4397287483A400405D5E /* DataStore.swift in Sources */,
 				CE79DF26287459F5001C5DEC /* Book.swift in Sources */,
 				CE79DF192874507E001C5DEC /* SearchResultPresenter.swift in Sources */,
-				CE6918762874AE9F0058123D /* SearchResultErrorViewPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

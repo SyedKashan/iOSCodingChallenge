@@ -68,7 +68,7 @@
                                     <outlet property="dataSource" destination="AmG-sq-BVH" id="8xK-ti-Qqh"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="u5q-d2-lW4">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="u5q-d2-lW4">
                                 <rect key="frame" x="185" y="431" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="YmR-FC-mNM"/>
@@ -96,61 +96,6 @@
             </objects>
             <point key="canvasLocation" x="1390" y="92"/>
         </scene>
-        <!--Search Result Error View-->
-        <scene sceneID="ORq-aX-z3s">
-            <objects>
-                <viewController storyboardIdentifier="SearchResultErrorView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="83w-bc-ks1" customClass="SearchResultErrorView" customModule="CodingChallenge" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="07d-UV-unN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eA-zd-ygu">
-                                <rect key="frame" x="30" y="74" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="eby-0x-xac"/>
-                                    <constraint firstAttribute="height" constant="40" id="nIY-kS-jeI"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="icon_close"/>
-                                <connections>
-                                    <action selector="didTapDismissButton:" destination="83w-bc-ks1" eventType="touchUpInside" id="44r-PF-PCX"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b3Z-dI-duS">
-                                <rect key="frame" x="157" y="403" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="b3Z-dI-duS" secondAttribute="height" multiplier="1:1" id="2Bs-eT-prD"/>
-                                    <constraint firstAttribute="width" constant="100" id="ApL-63-0Az"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGS-Lo-gQ3">
-                                <rect key="frame" x="41.5" y="545" width="331" height="0.0"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="1Sf-to-izN"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="gGS-Lo-gQ3" firstAttribute="centerX" secondItem="b3Z-dI-duS" secondAttribute="centerX" id="2Sk-gz-TJj"/>
-                            <constraint firstItem="4eA-zd-ygu" firstAttribute="leading" secondItem="1Sf-to-izN" secondAttribute="leading" constant="30" id="5pP-W9-fVE"/>
-                            <constraint firstItem="gGS-Lo-gQ3" firstAttribute="width" secondItem="07d-UV-unN" secondAttribute="width" multiplier="0.8" id="9bX-qe-Ap6"/>
-                            <constraint firstItem="gGS-Lo-gQ3" firstAttribute="top" secondItem="b3Z-dI-duS" secondAttribute="bottom" constant="42" id="RQT-9l-rzf"/>
-                            <constraint firstItem="b3Z-dI-duS" firstAttribute="centerY" secondItem="1Sf-to-izN" secondAttribute="centerY" id="W7A-zq-RkN"/>
-                            <constraint firstItem="b3Z-dI-duS" firstAttribute="centerX" secondItem="1Sf-to-izN" secondAttribute="centerX" id="XSg-n4-iAt"/>
-                            <constraint firstItem="4eA-zd-ygu" firstAttribute="top" secondItem="1Sf-to-izN" secondAttribute="top" constant="30" id="lph-90-pkf"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="imageView" destination="b3Z-dI-duS" id="6yN-M2-V3Q"/>
-                        <outlet property="messageLabel" destination="gGS-Lo-gQ3" id="UfR-YP-ttU"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dlS-kJ-LP3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2144.927536231884" y="99.776785714285708"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="yDZ-Pc-4sB">
             <objects>
@@ -169,7 +114,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_close" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

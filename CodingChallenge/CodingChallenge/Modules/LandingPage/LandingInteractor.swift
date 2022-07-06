@@ -25,28 +25,25 @@ enum State {
 
 final class LandingInteractor {
 	
-	private let presenter: LandingPresenting?
+	private let presenter: LandingPresenting
+	private let validator: Validator
 	
-	init(presenter: LandingPresenting) {
+	init(
+		presenter: LandingPresenting,
+		validator: Validator = Validator()
+	) {
+		self.validator = validator
 		self.presenter = presenter
 	}
 	
 	func validate(with searchText: String?) {
-		guard let searchText = searchText,
-			!searchText.isEmpty else {
-				presenter?.update(with: .error(ErrorModel(
-					title: LocalizableConstants.validationError.localized,
-					errorMessage: LocalizableConstants.emptyString.localized))
-				)
-			return
-		}
-		if searchText.count <= 3 {
-			presenter?.update(with: .error(ErrorModel(
-				title: LocalizableConstants.validationError.localized,
-				errorMessage: LocalizableConstants.minLength.localized))
-			)
-		} else {
-			presenter?.routeToSearchResult(with: searchText)
+		switch validator.validate(searchText) {
+			case .success(let searchText):
+				presenter.routeToSearchResult(with: searchText)
+			case .failure(let error):
+				presenter.update(with: .error(ErrorModel(
+					title: error.title,
+					errorMessage: error.message)))
 		}
 	}
 }
