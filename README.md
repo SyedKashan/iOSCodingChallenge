@@ -53,6 +53,16 @@ After, I tried to break down (still on paper) the work in individual tasks, thin
 I knew I would want to utilise the VIP Architecture as its very lightweight and it would suffice in this circumstance.
 Soon after that I started building the project: boilerplate code, modules infrastructure, UI, networking, storage etc..
 As a final step reviewed the code and removed, cleaned/changed unnecessary code.
+## Screenshots
+
+![Simulator Screen Shot - iPhone 13 Pro - 2022-07-06 at 09 11 26](https://user-images.githubusercontent.com/43185459/177517226-ace19b0f-9735-4bad-9deb-e138be393dbe.png)
+![Simulator Screen Shot - iPhone 13 Pro - 2022-07-06 at 10 16 48](https://user-images.githubusercontent.com/43185459/177517415-49478dda-7d57-4411-b2b6-a491ac4ef06a.png)
+![Simulator Screen Shot - iPhone 13 Pro - 2022-07-06 at 09 14 53](https://user-images.githubusercontent.com/43185459/177517501-28a847f1-b8e1-4917-b9e3-6938648160cd.png)
+![Simulator Screen Shot - iPhone 13 Pro - 2022-07-06 at 09 14 40](https://user-images.githubusercontent.com/43185459/177517584-6807cd9d-1d07-4324-9297-c61f0558883c.png)
+![Simulator Screen Shot - iPhone 13 Pro - 2022-07-06 at 10 17 46](https://user-images.githubusercontent.com/43185459/177517665-1de2ed60-5c01-4d6c-93cb-d7317ec51ada.png)
+![Simulator Screen Shot - iPhone 13 Pro - 2022-07-06 at 10 18 26](https://user-images.githubusercontent.com/43185459/177517720-280a7dd9-1d4a-4b8a-bf1a-349a26667830.png)
+
+
 ## Meta
 Syed Ali Kashan
 
