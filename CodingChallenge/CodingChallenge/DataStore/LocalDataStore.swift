@@ -29,15 +29,16 @@ class LocalDataStore: DataStore {
 	
 	func fetch(
 		query: String,
+		fetchLimit: Int = Constants.fetchLimit,
 		completion: @escaping (Result<[Book], Error>) -> Void
 	) {
 		let fetchRequest: NSFetchRequest<BookEntity>
 		fetchRequest = BookEntity.fetchRequest()
 
 		fetchRequest.predicate = NSPredicate(
-			format: "title CONTAINS %@", query
+			format: "title CONTAINS[cd] %@", query
 		)
-
+		fetchRequest.fetchLimit = fetchLimit
 		let context = persistentContainer.viewContext
 		
 		do {

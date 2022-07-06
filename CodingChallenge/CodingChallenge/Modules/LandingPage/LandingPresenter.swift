@@ -8,13 +8,11 @@
 import Foundation
 
 protocol LandingPresenting {
-	func update(with state: State)
+	func update(with state: LandingViewState)
 	func routeToSearchResult(with searchText: String)
 }
 
-extension LandingPresenter: LandingPresenting {}
-
-final class LandingPresenter {
+final class LandingPresenter: LandingPresenting {
 
 	private let view: LandingViewControllerProtocol?
 	private let router: LandingWireframe?
@@ -26,8 +24,12 @@ final class LandingPresenter {
 		self.router = router
 	}
 	
-	func update(with state: State) {
-		view?.update(with: state)
+	func update(with state: LandingViewState) {
+		switch state {
+		case.error(let errorModel):
+			view?.showErrror(with: errorModel)
+		default: break
+		}
 	}
 	
 	func routeToSearchResult(with searchText: String) {

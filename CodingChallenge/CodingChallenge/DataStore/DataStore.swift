@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DataStore {
-	func fetch(query: String, completion: @escaping (Result<[Book], Error>) -> Void)
+	func fetch(query: String, fetchLimit: Int, completion: @escaping (Result<[Book], Error>) -> Void)
 }
 
 enum DataStoreError: String, Error {

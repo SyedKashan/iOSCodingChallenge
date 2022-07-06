@@ -13,6 +13,7 @@ struct LocalizableConstants {
 	static let noInternet = "no_internet"
 	static let somethingWrong = "something_wrong"
 	static let validationError = "validation_error"
+	static let noDataFound = "no_data_found"
 	static let emptyString = "empty_string"
 	static let minLength = "min_length"
 	static let dismiss = "dismiss"

@@ -8,13 +8,15 @@
 import UIKit
 
 protocol LandingViewControllerProtocol {
-	func update(with state: State)
+	func showErrror(with errorModel: ErrorModel)
 }
 
-extension LandingViewController: LandingViewControllerProtocol,
-								 UITextFieldDelegate {}
+enum LandingViewState {
+	case valid
+	case error(ErrorModel)
+}
 
-final class LandingViewController: UIViewController {
+final class LandingViewController: UIViewController, LandingViewControllerProtocol {
 	
 	@IBOutlet private weak var searchTextfield: UITextField!
 	
@@ -22,7 +24,6 @@ final class LandingViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view.
 		
 		let imageView = UIImageView(image: UIImage(named: "icon_polestar_nav"))
 		self.navigationItem.titleView = imageView
@@ -39,7 +40,7 @@ final class LandingViewController: UIViewController {
 	}
 }
 
-extension LandingViewController {
+extension LandingViewController: UITextFieldDelegate {
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		view.endEditing(true)
@@ -50,15 +51,7 @@ extension LandingViewController {
 
 extension LandingViewController {
 	
-	func update(with state: State) {
-		switch state {
-		case .valid: break
-		case .error(let errorModel):
-			presentAlert(with: errorModel)
-		}
-	}
-	
-	private func presentAlert(with errorModel: ErrorModel) {
+	func showErrror(with errorModel: ErrorModel) {
 		let alertViewController = UIAlertController(
 			title: errorModel.title,
 			message: errorModel.errorMessage,
