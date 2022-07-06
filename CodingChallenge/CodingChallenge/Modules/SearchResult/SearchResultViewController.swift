@@ -18,6 +18,9 @@ final class SearchResultViewController: UIViewController {
 	
 	@IBOutlet private weak var tableView: UITableView!
 	@IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
+	@IBOutlet private weak var errorView: UIView!
+	@IBOutlet private weak var imageViewError: UIImageView!
+	@IBOutlet private weak var messageLabel: UILabel!
 	
 	var interactor: SearchResultInteractorProtocol?
 	
@@ -27,6 +30,12 @@ final class SearchResultViewController: UIViewController {
 			 guard isViewLoaded else { return }
 			 hidesLoadingIndicator ? loadingIndicator.stopAnimating() : loadingIndicator.startAnimating()
 		 }
+	}
+	private var showErrorView: Bool = false {
+		didSet {
+			guard isViewLoaded else { return }
+			errorView.isHidden = !showErrorView
+		}
 	}
 
     override func viewDidLoad() {
@@ -63,11 +72,15 @@ extension SearchResultViewController {
 	}
 	
 	private func setErrorEmptyView(with state: ErrorState) {
-		let view: ErrorView = UIView.fromNib()
-		view.updateView(with: state)
-		self.tableView.addSubview(view)
-		view.translatesAutoresizingMaskIntoConstraints = false
-		view.center = self.tableView.center
+		showErrorView = true
+		switch state {
+		case .noInternet:
+			imageViewError.image = UIImage(named: "icon_no_wifi")
+			messageLabel.text = "no_internet".localized
+		case .noData:
+			imageViewError.image = UIImage(named: "icon_sad")
+			messageLabel.text = "no_data_found".localized
+		}
 	}
 }
 

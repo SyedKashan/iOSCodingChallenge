@@ -68,6 +68,40 @@
                                     <outlet property="dataSource" destination="AmG-sq-BVH" id="8xK-ti-Qqh"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dc7-XM-AnB">
+                                <rect key="frame" x="0.0" y="378" width="414" height="150"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="10s-IZ-uHH">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pNF-xR-F5G">
+                                                <rect key="frame" x="167" y="0.0" width="80" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="8wz-TK-AkE"/>
+                                                    <constraint firstAttribute="width" constant="80" id="wDE-8P-aGs"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcP-BS-uPV">
+                                                <rect key="frame" x="24.5" y="85" width="365" height="65"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="UcP-BS-uPV" firstAttribute="width" secondItem="10s-IZ-uHH" secondAttribute="width" multiplier="0.8" constant="34.199999999999989" id="S6O-Qr-eAi"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="10s-IZ-uHH" firstAttribute="top" secondItem="Dc7-XM-AnB" secondAttribute="top" id="2BO-DK-lSs"/>
+                                    <constraint firstAttribute="bottom" secondItem="10s-IZ-uHH" secondAttribute="bottom" id="A1y-GZ-nr4"/>
+                                    <constraint firstAttribute="height" constant="150" id="gJl-A5-XsL"/>
+                                    <constraint firstAttribute="trailing" secondItem="10s-IZ-uHH" secondAttribute="trailing" id="lyG-lO-pzA"/>
+                                    <constraint firstItem="10s-IZ-uHH" firstAttribute="leading" secondItem="Dc7-XM-AnB" secondAttribute="leading" id="u7d-FH-GPg"/>
+                                </constraints>
+                            </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="u5q-d2-lW4">
                                 <rect key="frame" x="185" y="431" width="44" height="44"/>
                                 <constraints>
@@ -79,7 +113,10 @@
                         <viewLayoutGuide key="safeArea" id="kOo-Di-l4N"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Dc7-XM-AnB" firstAttribute="centerY" secondItem="kOo-Di-l4N" secondAttribute="centerY" id="5IY-bn-5bo"/>
                             <constraint firstItem="d7r-1C-bRB" firstAttribute="leading" secondItem="kOo-Di-l4N" secondAttribute="leading" id="8fS-5z-RDR"/>
+                            <constraint firstItem="Dc7-XM-AnB" firstAttribute="centerX" secondItem="kOo-Di-l4N" secondAttribute="centerX" id="DNu-Ny-IDh"/>
+                            <constraint firstItem="Dc7-XM-AnB" firstAttribute="width" secondItem="0rb-fn-Pls" secondAttribute="width" id="atC-pe-geZ"/>
                             <constraint firstItem="u5q-d2-lW4" firstAttribute="centerY" secondItem="kOo-Di-l4N" secondAttribute="centerY" id="b2h-Mg-jOf"/>
                             <constraint firstItem="kOo-Di-l4N" firstAttribute="bottom" secondItem="d7r-1C-bRB" secondAttribute="bottom" id="eDj-X4-MJ8"/>
                             <constraint firstItem="kOo-Di-l4N" firstAttribute="trailing" secondItem="d7r-1C-bRB" secondAttribute="trailing" id="oH2-ll-vHc"/>
@@ -88,7 +125,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="errorView" destination="Dc7-XM-AnB" id="tuc-o1-cIn"/>
+                        <outlet property="imageViewError" destination="pNF-xR-F5G" id="wBH-Dt-1BY"/>
                         <outlet property="loadingIndicator" destination="u5q-d2-lW4" id="PC2-j0-Jq9"/>
+                        <outlet property="messageLabel" destination="UcP-BS-uPV" id="Ni1-IU-rVQ"/>
                         <outlet property="tableView" destination="d7r-1C-bRB" id="bo2-Sd-eOr"/>
                     </connections>
                 </viewController>
