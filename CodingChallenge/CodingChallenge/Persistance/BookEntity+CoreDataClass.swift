@@ -11,16 +11,17 @@ import CoreData
 
 @objc(BookEntity)
 public class BookEntity: NSManagedObject {
-
-	required convenience init(
+	
+	required convenience init?(
 		book: Book,
 		context: NSManagedObjectContext
 	) {
-		let entity = NSEntityDescription.entity(
+		guard let entity = NSEntityDescription.entity(
 			forEntityName: String(describing: BookEntity.self),
 			in: context
-		)
-		self.init(entity: entity!, insertInto: context)
+		) else { return nil }
+		
+		self.init(entity: entity, insertInto: context)
 		id = book.id
 		title = book.title
 		if let cover = book.cover {
@@ -31,9 +32,9 @@ public class BookEntity: NSManagedObject {
 		}
 		
 		authors = book.authors
-
+		
 	}
-
+	
 	func apiModel() -> Book {
 		Book(
 			id: id,

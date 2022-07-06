@@ -24,7 +24,7 @@ final class SearchResultInteractor {
 	
 	private let searchString: String
 	private let presenter: SearchResultPresenting?
-	private let localDataStore = LocalDataStore()
+	private let localDataStore = LocalDataStore.shared
 	private let remoteDataStore = RemoteDataStore()
 	
 	init(presenter: SearchResultPresenting,
@@ -53,14 +53,19 @@ final class SearchResultInteractor {
 			switch result {
 			case .success(let books):
 				if books.isEmpty {
-					self?.presenter?.updateNoData()
+					self?.presenter?.update(with: .noData)
 				} else {
 					self?.presenter?.update(with: .loaded(books))
 					self?.localDataStore.save(items: books)
 				}
-			case .failure:
-				self?.presenter?.updateNoData()
+			case .failure(let error):
+				if case DataStoreError.noInternet = error {
+					self?.presenter?.update(with: .noConnection)
+				} else {
+					self?.presenter?.update(with: .noData)
+				}
 			}
 		}
 	}
 }
+

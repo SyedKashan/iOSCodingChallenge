@@ -9,10 +9,23 @@ import Foundation
 import CoreData
 
 class LocalDataStore: DataStore {
-	
+	static let shared = LocalDataStore()
 	private lazy var persistentContainer: NSPersistentContainer = {
-			NSPersistentContainer(name: "CodingChallenge")
-		}()
+		NSPersistentContainer(name: "CodingChallenge")
+	}()
+	
+	private var managedObjectContext: NSManagedObjectContext?
+	var isStorageReady = false
+
+	init() {
+		prepareLocalStorage()
+	}
+	
+	func prepareLocalStorage() {
+		persistentContainer.loadPersistentStores { descriptor, error in
+			self.isStorageReady = error == nil
+		}
+	}
 	
 	func fetch(
 		query: String,
@@ -22,32 +35,43 @@ class LocalDataStore: DataStore {
 		fetchRequest = BookEntity.fetchRequest()
 
 		fetchRequest.predicate = NSPredicate(
-			format: "title LIKE %@", query
+			format: "title CONTAINS %@", query
 		)
 
 		let context = persistentContainer.viewContext
 		
 		do {
 			let results = try context.fetch(fetchRequest)
-			if results.count > 0 {
-				let books = results.compactMap{ $0.apiModel() }
-				completion(.success(books))
-			} else {
+			guard !results.isEmpty else {
 				completion(.failure(DataStoreError.noData))
+				return
 			}
+			let books = results.compactMap{ $0.apiModel() }
+			completion(.success(books))
 		} catch {
-			fatalError("fetch request for entity Book predicate failed")
+			completion(.failure(DataStoreError.noData))
 		}
 	}
 	
 	func save(
 		items: [Book]
 	) {
-//		DispatchQueue.global(qos: .background) {
-			let context = persistentContainer.viewContext
-			items
-				.compactMap { BookEntity.init(book: $0, context: context)}
-				.forEach { context.insert($0) }
-//		}
+		guard isStorageReady
+		else {
+			print("storage is not ready to use")
+			return
+		}
+		let managedObjectContext = persistentContainer.viewContext
+		items.forEach {
+			_ = BookEntity(
+				book: $0,
+				context: managedObjectContext
+			)
+		}
+		do {
+			try managedObjectContext.save()
+		} catch {
+			print("Unable to save data, we can do error handling here as well.")
+		}
 	}
 }

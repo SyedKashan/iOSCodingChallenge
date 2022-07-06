@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SystemConfiguration
 
 class RemoteDataStore: DataStore {
 	private let urlSession: URLSession
@@ -25,7 +26,7 @@ class RemoteDataStore: DataStore {
 
 		let task = URLSession.shared.dataTask(with: components.url!) {(data, response, error) in
 			guard let data = data else {
-				completion(.failure(DataStoreError.noData))
+				self.isInternetAvailable() ? completion(.failure(DataStoreError.noData)) : completion(.failure(DataStoreError.noInternet))
 				return
 			}
 
@@ -40,4 +41,25 @@ class RemoteDataStore: DataStore {
 
 		task.resume()
 	}
+	
+	func isInternetAvailable() -> Bool {
+		var zeroAddress = sockaddr_in()
+		zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+		zeroAddress.sin_family = sa_family_t(AF_INET)
+		
+		let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+			$0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+				SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+			}
+		}
+		
+		var flags = SCNetworkReachabilityFlags()
+		if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+			return false
+		}
+		let isReachable = flags.contains(.reachable)
+		let needsConnection = flags.contains(.connectionRequired)
+		return (isReachable && !needsConnection)
+	}
 }
+
