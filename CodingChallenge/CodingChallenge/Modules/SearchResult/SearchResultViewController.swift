@@ -8,7 +8,6 @@
 import UIKit
 
 protocol SearchResultViewControllerProtocol {
-	func update(with books: [Book])
 	func update(with state: StateSearchResult)
 }
 
@@ -26,7 +25,6 @@ final class SearchResultViewController: UIViewController {
 	private var hidesLoadingIndicator: Bool = true {
 		 didSet {
 			 guard isViewLoaded else { return }
-			 loadingIndicator.isHidden = hidesLoadingIndicator
 			 hidesLoadingIndicator ? loadingIndicator.stopAnimating() : loadingIndicator.startAnimating()
 		 }
 	}
@@ -45,13 +43,6 @@ final class SearchResultViewController: UIViewController {
 // MARK: update state of view
 extension SearchResultViewController {
 	
-	func update(with books: [Book]) {
-		DispatchQueue.main.async {
-			self.books = books
-			self.tableView.reloadData()
-		}
-	}
-	
 	func update(with state: StateSearchResult) {
 		DispatchQueue.main.async { [weak self] in
 			switch state {
@@ -63,10 +54,20 @@ extension SearchResultViewController {
 				self?.hidesLoadingIndicator = false
 			case .noData:
 				self?.hidesLoadingIndicator = true
+				self?.setErrorEmptyView(with: .noData)
 			case .noConnection:
 				self?.hidesLoadingIndicator = true
+				self?.setErrorEmptyView(with: .noInternet)
 			}
 		}
+	}
+	
+	private func setErrorEmptyView(with state: ErrorState) {
+		let view: ErrorView = UIView.fromNib()
+		view.updateView(with: state)
+		self.tableView.addSubview(view)
+		view.translatesAutoresizingMaskIntoConstraints = false
+		view.center = self.tableView.center
 	}
 }
 

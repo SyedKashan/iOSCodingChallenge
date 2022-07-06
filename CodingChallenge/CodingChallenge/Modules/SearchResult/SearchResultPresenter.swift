@@ -8,9 +8,7 @@
 import Foundation
 
 protocol SearchResultPresenting {
-	func update(with books: [Book])
 	func update(with state: StateSearchResult)
-	func updateNoData()
 }
 
 extension SearchResultPresenter: SearchResultPresenting {}
@@ -18,21 +16,9 @@ extension SearchResultPresenter: SearchResultPresenting {}
 final class SearchResultPresenter {
 	
 	private let view: SearchResultViewControllerProtocol?
-	private let router: SearchResultWireframe?
 	
-	init(view: SearchResultViewControllerProtocol, router: SearchResultWireframe) {
+	init(view: SearchResultViewControllerProtocol) {
 		self.view = view
-		self.router = router
-	}
-	
-	func update(with books: [Book]) {
-//		view?.update(with: books)
-	}
-	
-	func updateNoData() {
-		DispatchQueue.main.async {
-			self.router?.routeToErrorView(with: .noData)
-		}
 	}
 	
 	func update(with state: StateSearchResult) {

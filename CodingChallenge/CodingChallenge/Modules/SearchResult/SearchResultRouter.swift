@@ -8,12 +8,6 @@
 import Foundation
 import UIKit
 
-protocol SearchResultWireframe {
-	func routeToErrorView(with state: ErrorState)
-}
-
-extension SearchResultRouter: SearchResultWireframe {}
-
 final class SearchResultRouter {
 
 	var viewController: UIViewController?
@@ -25,8 +19,7 @@ final class SearchResultRouter {
 			fatalError("SearchResultViewController unwrapped failed")
 		}
 		let router = SearchResultRouter()
-		let presenter = SearchResultPresenter(view: view,
-											  router: router)
+		let presenter = SearchResultPresenter(view: view)
 		let interactor = SearchResultInteractor(presenter: presenter,
 												with: searchText)
 		
@@ -34,18 +27,6 @@ final class SearchResultRouter {
 		router.viewController = view
 
 		return view
-	}
-	
-	func routeToErrorView(with state: ErrorState) {
-		let controller = SearchResultErrorViewRouter.createModule(with: state)
-		controller.modalPresentationStyle = .fullScreen
-		viewController?.present(
-			controller,
-			animated: true,
-			completion: { [weak self] in
-				self?.viewController?.navigationController?.popViewController(animated: false)
-			}
-		)
 	}
 }
 

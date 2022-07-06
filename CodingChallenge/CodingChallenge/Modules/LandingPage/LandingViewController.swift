@@ -17,7 +17,6 @@ extension LandingViewController: LandingViewControllerProtocol,
 final class LandingViewController: UIViewController {
 	
 	@IBOutlet private weak var searchTextfield: UITextField!
-	@IBOutlet private weak var searchButton: UIButton!
 	
 	private var interactor: LandingInteractorProtocol?
 	
